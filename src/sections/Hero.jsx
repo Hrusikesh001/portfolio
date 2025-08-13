@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useMediaQuery } from "react-responsive";
 import AnimatedTextLines from "../components/AnimatedTextLines";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -7,6 +8,7 @@ import { Canvas } from "@react-three/fiber";
 import { Environment, Float, Lightformer } from "@react-three/drei";
 
 const Hero = () => {
+    const isMobile = useMediaQuery({maxWidth: 853 });
     const contextRef = useRef(null);
     const headerRef = useRef(null);
     const aboutText = `I help growing brands and startups gain an
@@ -70,7 +72,7 @@ const Hero = () => {
             >
                 <ambientLight intensity={0.5} />
                 <Float speed={0.5}>
-                    <Planet />
+                    <Planet scale={isMobile ? 0.7 : 1}/>
                 </Float>
                 
                 <Environment resolution={256}>
@@ -90,13 +92,13 @@ const Hero = () => {
                         <Lightformer 
                            form={"circle"}
                            intensity={2}
-                           position={[10, 1, 0]}
+                           position={[-5, -1, 1]}
                            scale={16}
                         />
                         <Lightformer 
                            form={"circle"}
                            intensity={2}
-                           position={[0, 5, -9]}
+                           position={[10, 1, 0]}
                            scale={10}
                         />
                     </group>
