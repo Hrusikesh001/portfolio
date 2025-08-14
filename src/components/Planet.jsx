@@ -19,8 +19,28 @@ export function Planet(props) {
       y: 5,
       duration: 3,
       ease: "circ.out",
-    })
-  })
+    });
+    tl.from(shperesContainer.current.rotation, {
+      x: 0,
+      y: Math.PI,
+      z: -Math.PI,
+      duration: 10,
+      ease: "power1.inOut",
+    },
+    "-=25%"
+   );
+   tl.from(
+    ringContainer.current.rotation,
+    {
+      x: 0.8,
+      y: 0,
+      z: 0,
+      duration: 10,
+      ease: "power1.inOut",
+    },
+    "<"
+   );
+  }, []);
 
   // Safety check in case the model fails to load or structure changes
   if (!nodes || !materials) return null;
